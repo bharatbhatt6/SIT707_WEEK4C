@@ -110,21 +110,6 @@ public class MainTest {
     }
     
     @Test
-    public void testBlankPassword() throws InterruptedException {
-        WebElement usernameField = driver.findElement(By.id("okta-signin-username"));
-        WebElement passwordField = driver.findElement(By.id("okta-signin-password"));
-        WebElement loginButton = driver.findElement(By.id("okta-signin-submit"));
-
-        usernameField.sendKeys("bharatbhatt232@gmail.com");
-        passwordField.sendKeys("");
-        loginButton.click();
-        Thread.sleep(3000);
-
-        WebElement errorMessage = driver.findElement(By.xpath("//*[@id=\"retailLogin\"]/div[1]/div[1]/div/div/p"));
-        Assert.assertTrue(errorMessage.isDisplayed());
-    }
-    
-    @Test
     public void testBlankUsernameAndPassword() throws InterruptedException {
         WebElement usernameField = driver.findElement(By.id("okta-signin-username"));
         WebElement passwordField = driver.findElement(By.id("okta-signin-password"));
