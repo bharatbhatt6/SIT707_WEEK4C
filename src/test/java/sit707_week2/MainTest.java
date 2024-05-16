@@ -29,8 +29,23 @@ public class MainTest {
         loginButton.click();
         Thread.sleep(3000);
 
-        String expectedUrl = "https://www.bunnings.com.au/"; // Update with actual URL
+        String expectedUrl = "https://www.bunnings.com.au/"; 
         Assert.assertEquals(expectedUrl, driver.getCurrentUrl());
+    }
+    
+    @Test
+    public void testEnterUsername() throws InterruptedException{
+        WebElement usernameField = driver.findElement(By.id("okta-signin-username"));
+        WebElement passwordField = driver.findElement(By.id("okta-signin-password"));
+        WebElement loginButton = driver.findElement(By.id("okta-signin-submit"));
+
+        usernameField.sendKeys("");
+        passwordField.sendKeys("Bharatbhatt1");
+        loginButton.click();
+        Thread.sleep(3000);
+
+        WebElement errorMessage = driver.findElement(By.xpath("//*[@id=\"retailLogin\"]/div[1]/div[1]/div/div/p")); // Update with correct locator
+        Assert.assertTrue(errorMessage.isDisplayed());
     }
 
     @Test
@@ -44,10 +59,26 @@ public class MainTest {
         loginButton.click();
         Thread.sleep(3000);
 
+        WebElement errorMessage = driver.findElement(By.xpath("//*[@id=\"retailLogin\"]/div[1]/div[1]/div/div/p")); 
+        Assert.assertTrue(errorMessage.isDisplayed());
+    }
+    
+    @Test
+    public void testEnterPassword() throws InterruptedException{
+        WebElement usernameField = driver.findElement(By.id("okta-signin-username"));
+        WebElement passwordField = driver.findElement(By.id("okta-signin-password"));
+        WebElement loginButton = driver.findElement(By.id("okta-signin-submit"));
+
+        usernameField.sendKeys("bharatbhatt232@gmail.com");
+        passwordField.sendKeys("");
+        loginButton.click();
+        Thread.sleep(3000);
+
         WebElement errorMessage = driver.findElement(By.xpath("//*[@id=\"retailLogin\"]/div[1]/div[1]/div/div/p")); // Update with correct locator
         Assert.assertTrue(errorMessage.isDisplayed());
     }
-
+    
+    
     @Test
     public void testInvalidPassword() throws InterruptedException{
         WebElement usernameField = driver.findElement(By.id("okta-signin-username"));
@@ -60,6 +91,21 @@ public class MainTest {
         Thread.sleep(3000);
 
         WebElement errorMessage = driver.findElement(By.xpath("//*[@id=\"retailLogin\"]/div[1]/div[1]/div/div/p"));
+        Assert.assertTrue(errorMessage.isDisplayed());
+    }
+    
+    @Test
+    public void testWrongUserandPass() throws InterruptedException{
+        WebElement usernameField = driver.findElement(By.id("okta-signin-username"));
+        WebElement passwordField = driver.findElement(By.id("okta-signin-password"));
+        WebElement loginButton = driver.findElement(By.id("okta-signin-submit"));
+
+        usernameField.sendKeys("jim@gamil.com");
+        passwordField.sendKeys("pass456");
+        loginButton.click();
+        Thread.sleep(3000);
+
+        WebElement errorMessage = driver.findElement(By.xpath("//*[@id=\"retailLogin\"]/div[1]/div[1]/div/div/p")); // Update with correct locator
         Assert.assertTrue(errorMessage.isDisplayed());
     }
     
@@ -77,5 +123,20 @@ public class MainTest {
         WebElement errorMessage = driver.findElement(By.xpath("//*[@id=\"retailLogin\"]/div[1]/div[1]/div/div/p"));
         Assert.assertTrue(errorMessage.isDisplayed());
     }
+    
+    @Test
+    public void testBlankUsernameAndPassword() throws InterruptedException {
+        WebElement usernameField = driver.findElement(By.id("okta-signin-username"));
+        WebElement passwordField = driver.findElement(By.id("okta-signin-password"));
+        WebElement loginButton = driver.findElement(By.id("okta-signin-submit"));
 
+        usernameField.sendKeys("");
+        passwordField.sendKeys("");
+        loginButton.click();
+        Thread.sleep(3000);
+
+        WebElement errorMessage = driver.findElement(By.xpath("//*[@id=\"retailLogin\"]/div[1]/div[1]/div/div/p"));
+        Assert.assertTrue(errorMessage.isDisplayed());
+    }
+    
 }
