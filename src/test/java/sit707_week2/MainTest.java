@@ -105,7 +105,7 @@ public class MainTest {
         loginButton.click();
         Thread.sleep(3000);
 
-        WebElement errorMessage = driver.findElement(By.xpath("//*[@id=\"retailLogin\"]/div[1]/div[1]/div/div/p")); // Update with correct locator
+        WebElement errorMessage = driver.findElement(By.xpath("//*[@id=\"retailLogin\"]/div[1]/div[1]/div/div/p")); 
         Assert.assertTrue(errorMessage.isDisplayed());
     }
     
